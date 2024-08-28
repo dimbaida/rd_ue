@@ -8,7 +8,7 @@ int main()
     std::cout << "Health: ";
     std::cin >> health;
 
-    while (health > 0.0f || turn > 99)
+    while (health > 0.0f && turn < 100)
     {
         std::cout   << "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n"
                     << "\u2502" << " TURN " << turn << "  \u2502\n"
