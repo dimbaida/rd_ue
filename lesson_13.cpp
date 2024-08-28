@@ -21,11 +21,16 @@ int main()
         std::cin >> item_impact;
 
         float result_impact = item_impact * (1.f - std::min(1.f, std::abs(item_distance) / 100.f));
-        std::cout   << (item_impact <= 0.f 
-                        ? "\033[31mDamage taken: "  // Red color for damage
-                        : "\033[32mHealed: ")       // Green color for healing
-                    << std::abs(result_impact) 
-                    << "\033[0m" << std::endl;      // Reset to default color
+        if (item_distance > 100.f || std::abs(item_impact) < 1e-3)
+            std::cout << "Item has no effect\n";
+        else
+        {
+            if (item_impact < 0.f)
+                std::cout << "\033[31mDamage taken: " << std::abs(result_impact);
+            if (item_impact > 0.f)
+                std::cout << "\033[32mHealed: " << std::abs(result_impact);
+            std::cout << "\033[0m" << std::endl; 
+        }
         
         health += result_impact;
 
