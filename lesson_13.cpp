@@ -3,7 +3,7 @@
 int main()
 {
     float health;
-    int turn;
+    int turn = 1;
 
     std::cout << "Health: ";
     std::cin >> health;
