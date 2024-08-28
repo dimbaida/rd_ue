@@ -8,11 +8,11 @@ int main()
     std::cout << "Health: ";
     std::cin >> health;
 
-    while (health > 0.0f)
+    while (health > 0.0f || turn > 99)
     {
-        std::cout << "\n------\n";
-        std::cout << "TURN " << turn;
-        std::cout << "\n------\n";
+        std::cout   << "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n"
+                    << "\u2502" << " TURN " << turn << "  \u2502\n"
+                    << "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n";
 
         float item_distance, item_impact;
         std::cout << "Item distance: ";
@@ -20,11 +20,12 @@ int main()
         std::cout << "Item impact: "; 
         std::cin >> item_impact;
 
-        float result_impact = item_impact * (1.f - std::min(1.f, item_distance / 100.f));
-        if (item_impact <= 0.f)
-            std::cout << "Damage taken: " << std::abs(result_impact) << '\n';
-        else
-            std::cout << "Healed: " << std::abs(result_impact) << '\n';
+        float result_impact = item_impact * (1.f - std::min(1.f, std::abs(item_distance) / 100.f));
+        std::cout   << (item_impact <= 0.f 
+                        ? "\033[31mDamage taken: "  // Red color for damage
+                        : "\033[32mHealed: ")       // Green color for healing
+                    << std::abs(result_impact) 
+                    << "\033[0m" << std::endl;      // Reset to default color
         
         health += result_impact;
 
@@ -35,8 +36,11 @@ int main()
 
         turn++;
     }
-    std::cout << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D" << std::endl;
-    std::cout << "\u271D  You died!  \u271D" << std::endl;
-    std::cout << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D" << std::endl;
+
+    std::cout   << "\033[31m"
+                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D\n"
+                << "\u271D  You died!  \u271D\n"
+                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D" << std::endl;
+
     return 0;
 }
