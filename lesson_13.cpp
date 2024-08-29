@@ -21,7 +21,7 @@ int main()
         std::cin >> item_impact;
 
         float result_impact = item_impact * (1.f - std::min(1.f, std::abs(item_distance) / 100.f));
-        if (item_distance > 100.f || std::abs(item_impact) < 1e-3)
+        if (item_distance > 100.f || std::abs(result_impact) < 1e-3)
             std::cout << "\033[33mItem has no effect";
         else if (item_impact < 0.f)
             std::cout << "\033[31mDamage taken: " << std::abs(result_impact);
