@@ -499,6 +499,10 @@ FodyWeavers.xsd
 
 # Mac files
 .DS_Store
+*.dSYM/
+
+# custom
+compiled/
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
