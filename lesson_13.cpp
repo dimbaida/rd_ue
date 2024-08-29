@@ -1,5 +1,34 @@
 #include <iostream>
 
+void outputFramedHealth(int health)
+{
+    std::string text = "\u250c\u2500";
+    for (int i=0; i<std::to_string(health).length() + 8; i++)
+        text += "\u2500";
+
+    text = text + "\u2500\u2510\n"
+                + "\u2502" + " HEALTH: " + std::to_string(health) + " \u2502\n"
+                + "\u2514\u2500";
+
+    for (int i=0; i<std::to_string(health).length() + 8; i++)
+        text += "\u2500";
+    text += "\u2500\u2518";
+    std::cout << "\033[32m" << text << "\033[0m" << std::endl; 
+}
+
+void outputTurnNumber(int turn)
+{
+    std::cout << "\n===== " << "TURN " << turn << " =====\n";
+}
+
+void outputDeathMessage()
+{
+    std::cout   << "\033[31m"
+                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D\n"
+                << "\u271D  You died!  \u271D\n"
+                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D" << std::endl;
+}
+
 int main()
 {
     float health;
@@ -10,9 +39,7 @@ int main()
 
     while (health > 0.f && turn < 100)
     {
-        std::cout   << "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n"
-                    << "\u2502" << " TURN " << turn << "  \u2502\n"
-                    << "\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n";
+        outputTurnNumber(turn);
 
         float item_distance, item_impact;
         std::cout << "Item distance: ";
@@ -28,22 +55,17 @@ int main()
         else
             std::cout << "\033[32mHealed: " << std::abs(result_impact);
         std::cout << "\033[0m" << std::endl; 
-
         
         health += result_impact;
 
         if (health > 0.f && health < 1.f) 
             health = 1.f;
 
-        std::cout << "Health: " << health << std::endl;
+        outputFramedHealth(health);
 
         turn++;
     }
 
-    std::cout   << "\033[31m"
-                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D\n"
-                << "\u271D  You died!  \u271D\n"
-                << "\u271D \u271D \u271D \u271D \u271D \u271D \u271D \u271D" << std::endl;
-
+    outputDeathMessage();
     return 0;
 }
