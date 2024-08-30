@@ -33,9 +33,7 @@ int main()
         std::cout << "\033[0m" << std::endl; 
         
         health += result_impact;
-
-        if (health > 0.f && health < 1.f) 
-            health = 1.f;
+        health = (health > 0.f && health < 1.f) ? 1.f : health;
 
         outputFramedHealth(health);
 
