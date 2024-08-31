@@ -25,7 +25,7 @@ void outputFramedHealth(float health)
     std::cout << "\033[32m" << text << "\033[0m" << std::endl; 
 }
 
-void outputTurnNumber(const int& turn)
+void outputTurnNumber(const int &turn)
 {
     std::cout << "\n===== " << "TURN " << turn << " =====\n";
 }
