@@ -10,10 +10,10 @@ enum Color {
     yellow
 };
 
-std::string roundedFloatToString(const float &number, int precision = 2)
+std::string roundedFloatToString(const float &number, const int precision = 2)
 {
     std::ostringstream stream;
-    stream << std::fixed << std::setprecision(2) << number;
+    stream << std::fixed << std::setprecision(precision) << number;
     return stream.str();
 }
 
@@ -36,9 +36,9 @@ void printColored(const std::string &text, const Color &color)
     std::cout << text << "\033[0m" << std::endl; 
 }
 
-void outputPrettyHealth(float health)
+void outputPrettyHealth(const float &health)
 {
-    std::string health_text = roundedFloatToString(health, 2);
+    std::string health_text = roundedFloatToString(health);
     std::string text = "\u250c\u2500";
     for (int i = 0; i < health_text.length() + 8; i++)
         text += "\u2500";
