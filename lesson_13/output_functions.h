@@ -3,14 +3,42 @@
 #include <iomanip>
 #include <sstream>
 
-void outputFramedHealth(float health)
+
+enum Color {
+    red,
+    green,
+    yellow
+};
+
+std::string roundedFloatToString(const float &number, int precision = 2)
 {
-    health = std::round(health * 100.0) / 100.0;
-
     std::ostringstream stream;
-    stream << std::fixed << std::setprecision(2) << health;
-    std::string health_text = stream.str();
+    stream << std::fixed << std::setprecision(2) << number;
+    return stream.str();
+}
 
+void printColored(const std::string &text, const Color &color)
+{
+    switch (color)
+    {
+        case red:
+            std::cout << "\033[31m"; 
+            break;
+        case green:
+            std::cout << "\033[32m";
+            break;
+        case yellow:
+            std::cout << "\033[33m";
+            break;
+        default:
+            break;
+    }
+    std::cout << text << "\033[0m" << std::endl; 
+}
+
+void outputPrettyHealth(float health)
+{
+    std::string health_text = roundedFloatToString(health, 2);
     std::string text = "\u250c\u2500";
     for (int i = 0; i < health_text.length() + 8; i++)
         text += "\u2500";
@@ -22,7 +50,7 @@ void outputFramedHealth(float health)
     for (int i = 0; i < health_text.length() + 8; i++)
         text += "\u2500";
     text += "\u2500\u2518";
-    std::cout << "\033[32m" << text << "\033[0m" << std::endl; 
+    printColored(text, Color::green);
 }
 
 void outputTurnNumber(const int &turn)

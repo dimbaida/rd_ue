@@ -24,18 +24,18 @@ int main()
         std::cin >> item_impact;
 
         float result_impact = item_impact * (1.f - std::min(1.f, std::abs(item_distance) / 100.f));
-        if (item_distance > 100.f || std::abs(result_impact) < 1e-6)
-            std::cout << "\033[33mItem has no effect";
+        result_impact = std::abs(result_impact) < 1e-3 ? 0.f : result_impact;
+        if (result_impact == 0.f)
+            printColored("Item has no effect", Color::yellow);
         else if (item_impact < 0.f)
-            std::cout << "\033[31mDamage taken: " << std::abs(result_impact);
+            printColored("Damage taken: " + roundedFloatToString(abs(result_impact)), Color::red);
         else
-            std::cout << "\033[32mHealed: " << std::abs(result_impact);
-        std::cout << "\033[0m" << std::endl; 
+            printColored("Healed: " + roundedFloatToString(std::abs(result_impact)), Color::green);
         
         health += result_impact;
         health = (health > 0.f && health < 1.f) ? 1.f : health;
 
-        outputFramedHealth(health);
+        outputPrettyHealth(health);
 
         turn++;
     }
