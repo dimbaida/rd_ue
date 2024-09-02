@@ -29,7 +29,7 @@ std::string framedText(const std::string &text)
     return out;
 }
 
-void outputColored(const std::string &text, const Color &color)
+void outputColoredText(const std::string &text, const Color &color)
 {
     switch (color)
     {
@@ -52,7 +52,7 @@ void outputPrettyHealth(const float &health)
 {
     std::string health_text = roundedFloatToString(health);
     health_text = framedText(health_text);
-    outputColored(health_text, Color::green);
+    outputColoredText(health_text, Color::green);
 }
 
 void outputTurnNumber(const int &turn)
