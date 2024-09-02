@@ -17,7 +17,7 @@ std::string roundedFloatToString(const float &number, const int precision = 2)
     return stream.str();
 }
 
-std::string frameText(const std::string &text)
+std::string framedText(const std::string &text)
 {
     std::string out = "\u250c\u2500";
     for (int i = 0; i < text.length(); i++)
@@ -51,7 +51,7 @@ void outputColored(const std::string &text, const Color &color)
 void outputPrettyHealth(const float &health)
 {
     std::string health_text = roundedFloatToString(health);
-    health_text = frameText(health_text);
+    health_text = framedText(health_text);
     outputColored(health_text, Color::green);
 }
 
