@@ -13,7 +13,7 @@ enum Color {
 std::string roundedFloatToString(const float &number, const int precision = 2)
 {
     std::ostringstream stream;
-    stream << std::fixed << std::setprecision(precision) << number;
+    stream << std::fixed << std::setprecision(precision) << round(number);
     return stream.str();
 }
 
