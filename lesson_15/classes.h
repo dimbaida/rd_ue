@@ -48,17 +48,10 @@ struct Clan
     {
         for (auto it = fighters.begin(); it != fighters.end();)
         {
-            if (!(*it)->isAlive)
-            {
-                it = fighters.erase(it);
-            }
-            else
-            {
-                ++it; 
-            }
+            if (!(*it)->isAlive) { it = fighters.erase(it); }
+            else { ++it; }
         }
     }
-
 
     Fighter* pickRandomFighter()
     {
@@ -68,7 +61,6 @@ struct Clan
         return fighters[random_index];
     }
 };
-
 
 struct Arena
 {
@@ -89,7 +81,6 @@ struct Arena
         fighters[1]->isAlive = fighters[1]->health > 0;
     }
 };
-
 
 void outputClanFigters(Clan &clan1, Clan &clan2)
 {   

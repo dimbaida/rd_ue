@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 int main()
 {
     Clan clan_01, clan_02;
@@ -32,7 +31,6 @@ int main()
     clan_01.addFighter(fighter2);
     clan_02.addFighter(fighter3);
     clan_02.addFighter(fighter4);
-
 
     while (true)
     {
@@ -104,7 +102,7 @@ int main()
                 if (clan_01.fighters.size() == 0 && clan_02.fighters.size() == 0)
                 {
                     outputClanFigters(clan_01, clan_02);
-                    cout << framedText("No one wins. Tie.") << endl;
+                    cout << framedText("No one wins. Everybody is dead.") << endl;
                 }
                 else if (clan_01.fighters.size() == 0)
                 {
@@ -125,10 +123,7 @@ int main()
             {
                 break;
             }
-
         }
-
     }
-
     return 0;       
 }
