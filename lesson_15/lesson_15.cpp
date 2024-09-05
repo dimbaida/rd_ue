@@ -114,7 +114,7 @@ int main()
                 else
                 {
                     outputClanFigters(clan_01, clan_02);
-                    cout << framedText(clan_01.name + " wins!") << endl;
+                    cout << clan_01.name + " wins!" << endl;
                 }
                 cin.get();
                 return 0;

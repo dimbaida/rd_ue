@@ -15,7 +15,7 @@ struct Fighter
 
     string getPrettyName()
     {
-        return name + '(' + to_string(damage) + '/' + to_string(health) + ')';
+        return "·" + name + " " + to_string(damage) + '/' + to_string(health) + "·";
     }
 };
 
@@ -26,8 +26,7 @@ struct Clan
 
     void addFighter(Fighter &fighter)
     {
-        Fighter* fighterPtr = &fighter;
-        fighters.push_back(fighterPtr);
+        fighters.push_back(&fighter);
     }
 
     void removeFighterByName(const string& name)
@@ -77,8 +76,8 @@ struct Arena
 
     void announce(int& turn)
     {
-        cout << "TURN " << turn << "\n\nNow fighting:\n";
-        string text = fighters[0]->getPrettyName() + "  VS  " + fighters[1]->getPrettyName();
+        cout << "TURN " << turn << endl;
+        string text = fighters[0]->getPrettyName() + " VS " + fighters[1]->getPrettyName();
         cout << framedText(text);
     }
 
@@ -114,5 +113,5 @@ void outputClanFigters(Clan &clan1, Clan &clan2)
         }
         cout << "\n" << endl;
     }
-    cout << "===============\n" << endl;
+    cout << "=====================\n" << endl;
 }
