@@ -34,7 +34,7 @@ int main()
 
     while (true)
     {
-        outputClanFigters(clan_01, clan_02);
+        outputHeader(clan_01, clan_02);
 
         int action;
         cout    << "0 - add fighter\n"
@@ -49,21 +49,21 @@ int main()
             {
                 Fighter fighter;
 
-                outputClanFigters(clan_01, clan_02);
+                outputHeader(clan_01, clan_02);
                 cout << "Clan [0] or [1]: ";
                 int clan_id;
                 cin >> clan_id;
                 Clan &clan = clan_id ? clan_02 : clan_01;
 
-                outputClanFigters(clan_01, clan_02);
+                outputHeader(clan_01, clan_02);
                 cout << "Name: ";
                 cin >> fighter.name;
                 
-                outputClanFigters(clan_01, clan_02);
+                outputHeader(clan_01, clan_02);
                 cout << "Health: ";
                 cin >> fighter.health;
 
-                outputClanFigters(clan_01, clan_02);
+                outputHeader(clan_01, clan_02);
                 cout << "Damage: ";
                 cin >> fighter.damage;
 
@@ -73,7 +73,7 @@ int main()
 
             case 1:  // remove fighter
             {
-                outputClanFigters(clan_01, clan_02);
+                outputHeader(clan_01, clan_02);
                 string name;
                 cout << "Enter fighter's name: ";
                 cin >> name;
@@ -87,7 +87,7 @@ int main()
                 int turn = 1;
                 while (clan_01.fighters.size() > 0 && clan_02.fighters.size() > 0)
                 {
-                    outputClanFigters(clan_01, clan_02);
+                    outputHeader(clan_01, clan_02);
                     Arena arena;
                     arena.fighters[0] = clan_01.pickRandomFighter();
                     arena.fighters[1] = clan_02.pickRandomFighter();
@@ -101,17 +101,17 @@ int main()
 
                 if (clan_01.fighters.size() == 0 && clan_02.fighters.size() == 0)
                 {
-                    outputClanFigters(clan_01, clan_02);
+                    outputHeader(clan_01, clan_02);
                     cout << framedText("No one wins. Everybody is dead.") << endl;
                 }
                 else if (clan_01.fighters.size() == 0)
                 {
-                    outputClanFigters(clan_01, clan_02);
+                    outputHeader(clan_01, clan_02);
                     cout << framedText(clan_02.name + " wins!") << endl;
                 }
                 else
                 {
-                    outputClanFigters(clan_01, clan_02);
+                    outputHeader(clan_01, clan_02);
                     cout << clan_01.name + " wins!" << endl;
                 }
                 cin.get();

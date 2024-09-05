@@ -82,7 +82,7 @@ struct Arena
     }
 };
 
-void outputClanFigters(Clan &clan1, Clan &clan2)
+void outputHeader(Clan &clan1, Clan &clan2)
 {   
     clearConsole();
     if (clan1.fighters.size() > 0)
