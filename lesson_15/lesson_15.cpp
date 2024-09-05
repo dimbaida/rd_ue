@@ -73,7 +73,7 @@ int main()
                 break;
             }
 
-            case 1:
+            case 1:  // remove fighter
             {
                 outputClanFigters(clan_01, clan_02);
                 string name;
@@ -86,17 +86,19 @@ int main()
 
             case 2:  // fight
             {   
+                int turn = 1;
                 while (clan_01.fighters.size() > 0 && clan_02.fighters.size() > 0)
                 {
                     outputClanFigters(clan_01, clan_02);
                     Arena arena;
                     arena.fighters[0] = clan_01.pickRandomFighter();
                     arena.fighters[1] = clan_02.pickRandomFighter();
-                    arena.announce();
+                    arena.announce(turn);
                     cin.get();
                     arena.fight();
                     clan_01.removeDeadFighters();
                     clan_02.removeDeadFighters();
+                    turn++;
                 }
 
                 if (clan_01.fighters.size() == 0 && clan_02.fighters.size() == 0)
@@ -118,6 +120,7 @@ int main()
                 return 0;
                 
             }
+            
             default:
             {
                 break;
@@ -126,26 +129,6 @@ int main()
         }
 
     }
-
-
-    // Case : 0 (add fighter)
-        // read 
-            // name
-            // clan (0 / 1)
-            // health
-            // damage
-        // add to lobby
-
-    // Case : 1 (remove fighter)
-        // read
-            // name
-            // clan (0 / 1)
-        // remove from lobby
-
-    // Case : 2 (fight)
-        // randomly choose a fighters
-        // inflict damage
-        // loop until one of the clans is destroyed
 
     return 0;       
 }

@@ -503,7 +503,7 @@ FodyWeavers.xsd
 
 # custom
 compiled/
-/lesson_13   
+lesson_13   
 !/lesson_13/
-/lesson_15   
+lesson_15   
 !/lesson_15/ 

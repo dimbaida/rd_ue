@@ -75,10 +75,9 @@ struct Arena
 {
     array<Fighter*, 2> fighters;
 
-    void announce()
+    void announce(int& turn)
     {
-        
-        cout << "Now fighting:\n";
+        cout << "TURN " << turn << "\n\nNow fighting:\n";
         string text = fighters[0]->getPrettyName() + "  VS  " + fighters[1]->getPrettyName();
         cout << framedText(text);
     }
@@ -96,18 +95,24 @@ struct Arena
 void outputClanFigters(Clan &clan1, Clan &clan2)
 {   
     clearConsole();
-    cout << clan1.name << " fighters:\n";
-    for (Fighter* f : clan1.fighters)
+    if (clan1.fighters.size() > 0)
     {
-        cout << f->getPrettyName() << ' ';
+        cout << clan1.name << " fighters:\n";
+        for (Fighter* f : clan1.fighters)
+        {
+            cout << f->getPrettyName() << ' ';
+        }
+        cout << "\n" << endl;
     }
-    cout << "\n" << endl;
 
-    cout << clan2.name << " fighters:\n";
-    for (Fighter* f : clan2.fighters)
+    if (clan2.fighters.size() > 0)
     {
-        cout << f->getPrettyName() << ' ';
+        cout << clan2.name << " fighters:\n";
+        for (Fighter* f : clan2.fighters)
+        {
+            cout << f->getPrettyName() << ' ';
+        }
+        cout << "\n" << endl;
     }
-    cout << "\n" << endl;
     cout << "===============\n" << endl;
 }
