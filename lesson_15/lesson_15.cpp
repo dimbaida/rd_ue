@@ -37,9 +37,9 @@ int main()
         outputHeader(clan_01, clan_02);
 
         int action;
-        cout    << "0 - add fighter\n"
-                << "1 - remove fighter\n"
-                << "2 - start fight" << endl
+        cout    << "[0] - add fighter\n"
+                << "[1] - remove fighter\n"
+                << "[2] - start fight" << endl
                 << "Choose your action: ";
         cin     >> action;
         
