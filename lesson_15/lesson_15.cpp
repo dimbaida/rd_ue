@@ -2,8 +2,6 @@
 #include <vector>
 #include "classes.h"
 
-using namespace std;
-
 int main()
 {
     Clan clan_01, clan_02;
@@ -45,7 +43,7 @@ int main()
         
         switch (action)
         {
-            case 0:  // add fighter2
+            case 0:  // add fighter
             {
                 Fighter fighter;
 
@@ -84,47 +82,39 @@ int main()
 
             case 2:  // fight
             {   
-                int turn = 1;
+                int turn;
                 Arena arena;
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 
                 while (clan_01.fighters.size() > 0 && clan_02.fighters.size() > 0)
                 {
+                    turn++;
                     outputHeader(clan_01, clan_02);
                     arena.fighters[0] = clan_01.pickRandomFighter();
                     arena.fighters[1] = clan_02.pickRandomFighter();
-                    arena.announce(turn);
+                    arena.announce();
+                    cout << "TURN " << turn << endl;
                     cin.get();
                     arena.fight();
                     clan_01.removeDeadFighters();
                     clan_02.removeDeadFighters();
-                    turn++;
                 }
 
+                outputHeader(clan_01, clan_02);
+                cout << "TURN " << turn << endl;
+
                 if (clan_01.fighters.size() == 0 && clan_02.fighters.size() == 0)
-                {
-                    outputHeader(clan_01, clan_02);
                     cout << framedText("No one wins. Everybody is dead.") << endl;
-                }
                 else if (clan_01.fighters.size() == 0)
-                {
-                    outputHeader(clan_01, clan_02);
                     cout << framedText(clan_02.name + " wins!") << endl;
-                }
                 else
-                {
-                    outputHeader(clan_01, clan_02);
                     cout << clan_01.name + " wins!" << endl;
-                }
                 cin.get();
                 return 0;
-                
             }
             
             default:
-            {
                 break;
-            }
         }
     }
     return 0;       

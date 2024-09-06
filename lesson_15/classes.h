@@ -65,9 +65,9 @@ struct Clan
 struct Arena
 {
     array<Fighter*, 2> fighters = {nullptr, nullptr};
-    void announce(int& turn)
+    
+    void announce()
     {
-        cout << "TURN " << turn << endl;
         string text = fighters[0]->getPrettyName() + " VS " + fighters[1]->getPrettyName();
         cout << framedText(text) << endl;
     }
