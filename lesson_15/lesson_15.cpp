@@ -2,6 +2,8 @@
 #include <vector>
 #include "classes.h"
 
+void outputHeader(Clan& clan1, Clan& clan2);
+
 int main()
 {
     Clan clan_01, clan_02;
@@ -92,11 +94,11 @@ int main()
                 cout << "TURN " << turn << endl;
 
                 if (clan_01.fighters.size() == 0 && clan_02.fighters.size() == 0)
-                    cout << framedText("No one wins. Everybody is dead.") << endl;
+                    cout << "No one wins. Everybody is dead." << endl;
                 else if (clan_01.fighters.size() == 0)
-                    cout << framedText(clan_02.name + " wins!") << endl;
+                    cout << clan_02.name << " wins!" << endl;
                 else
-                    cout << clan_01.name + " wins!" << endl;
+                    cout << clan_01.name << " wins!" << endl;
                 cin.get();
                 return 0;
             }
@@ -106,4 +108,27 @@ int main()
         }
     }
     return 0;       
+}
+
+void outputHeader(Clan& clan1, Clan& clan2)
+{   
+    clearConsole();
+
+    if (clan1.fighters.size() > 0)
+    {
+        cout << clan1.name << " fighters:\n";
+        for (Fighter* f : clan1.fighters)
+            cout << f->getPrettyName() << ' ';
+        cout << "\n" << endl;
+    }
+
+    if (clan2.fighters.size() > 0)
+    {
+        cout << clan2.name << " fighters:\n";
+        for (Fighter* f : clan2.fighters)
+            cout << f->getPrettyName() << ' ';
+        cout << "\n" << endl;
+    }
+
+    cout << "==========================\n" << endl;
 }

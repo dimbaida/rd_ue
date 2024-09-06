@@ -56,10 +56,10 @@ struct Clan
         }
     }
 
-    Fighter* pickRandomFighter()
+    Fighter* pickRandomFighter() 
     {
-        mt19937 rng(std::time(nullptr));
-        uniform_int_distribution<std::size_t> dist(0, fighters.size() - 1);
+        static std::mt19937 rng(static_cast<unsigned int>(std::time(nullptr)));
+        static std::uniform_int_distribution<std::size_t> dist(0, fighters.size() - 1);
         size_t random_index = dist(rng);
         return fighters[random_index];
     }
@@ -83,26 +83,3 @@ struct Arena
         fighters[1]->isAlive = fighters[1]->health > 0;
     }
 };
-
-void outputHeader(Clan& clan1, Clan& clan2)
-{   
-    clearConsole();
-
-    if (clan1.fighters.size() > 0)
-    {
-        cout << clan1.name << " fighters:\n";
-        for (Fighter* f : clan1.fighters)
-            cout << f->getPrettyName() << ' ';
-        cout << "\n" << endl;
-    }
-
-    if (clan2.fighters.size() > 0)
-    {
-        cout << clan2.name << " fighters:\n";
-        for (Fighter* f : clan2.fighters)
-            cout << f->getPrettyName() << ' ';
-        cout << "\n" << endl;
-    }
-
-    cout << "==========================\n" << endl;
-}
