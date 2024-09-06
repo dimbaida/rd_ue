@@ -88,9 +88,7 @@ void outputHeader(Clan& clan1, Clan& clan2)
     {
         cout << clan1.name << " fighters:\n";
         for (Fighter* f : clan1.fighters)
-        {
             cout << f->getPrettyName() << ' ';
-        }
         cout << "\n" << endl;
     }
 
@@ -98,9 +96,7 @@ void outputHeader(Clan& clan1, Clan& clan2)
     {
         cout << clan2.name << " fighters:\n";
         for (Fighter* f : clan2.fighters)
-        {
             cout << f->getPrettyName() << ' ';
-        }
         cout << "\n" << endl;
     }
     cout << "=====================\n" << endl;
