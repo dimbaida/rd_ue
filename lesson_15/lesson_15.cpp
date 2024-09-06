@@ -45,7 +45,7 @@ int main()
         
         switch (action)
         {
-            case 0:  // add fighter
+            case 0:  // add fighter2
             {
                 Fighter fighter;
 
@@ -85,10 +85,12 @@ int main()
             case 2:  // fight
             {   
                 int turn = 1;
+                Arena arena;
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                
                 while (clan_01.fighters.size() > 0 && clan_02.fighters.size() > 0)
                 {
                     outputHeader(clan_01, clan_02);
-                    Arena arena;
                     arena.fighters[0] = clan_01.pickRandomFighter();
                     arena.fighters[1] = clan_02.pickRandomFighter();
                     arena.announce(turn);

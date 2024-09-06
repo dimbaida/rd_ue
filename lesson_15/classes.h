@@ -2,6 +2,8 @@
 #include <vector>
 #include <random>
 #include <ctime> 
+#include <string>
+#include <array>
 #include "utils.h"
 
 using namespace std;
@@ -34,13 +36,9 @@ struct Clan
         for (auto it = fighters.begin(); it != fighters.end();)
         {
             if ((*it)->name == name)
-            {
                 it = fighters.erase(it); 
-            }
             else
-            {
                 ++it;
-            }
         }
     }
 
@@ -48,8 +46,10 @@ struct Clan
     {
         for (auto it = fighters.begin(); it != fighters.end();)
         {
-            if (!(*it)->isAlive) { it = fighters.erase(it); }
-            else { ++it; }
+            if (!(*it)->isAlive) 
+                it = fighters.erase(it);
+            else 
+                ++it;
         }
     }
 
@@ -64,13 +64,12 @@ struct Clan
 
 struct Arena
 {
-    array<Fighter*, 2> fighters;
-
+    array<Fighter*, 2> fighters = {nullptr, nullptr};
     void announce(int& turn)
     {
         cout << "TURN " << turn << endl;
         string text = fighters[0]->getPrettyName() + " VS " + fighters[1]->getPrettyName();
-        cout << framedText(text);
+        cout << framedText(text) << endl;
     }
 
     void fight()
@@ -82,7 +81,7 @@ struct Arena
     }
 };
 
-void outputHeader(Clan &clan1, Clan &clan2)
+void outputHeader(Clan& clan1, Clan& clan2)
 {   
     clearConsole();
     if (clan1.fighters.size() > 0)
