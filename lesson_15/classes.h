@@ -15,6 +15,9 @@ struct Fighter
     int damage;
     bool isAlive = true;
 
+    Fighter() : name("Unknown"), damage(10), health(100) {};
+    Fighter(string n, int d, int h) : name(n), damage(d), health(h) {};
+    
     string getPrettyName()
     {
         return "·" + name + " " + to_string(damage) + '/' + to_string(health) + "·";
@@ -65,7 +68,7 @@ struct Clan
 struct Arena
 {
     array<Fighter*, 2> fighters = {nullptr, nullptr};
-    
+
     void announce()
     {
         string text = fighters[0]->getPrettyName() + " VS " + fighters[1]->getPrettyName();
@@ -84,6 +87,7 @@ struct Arena
 void outputHeader(Clan& clan1, Clan& clan2)
 {   
     clearConsole();
+
     if (clan1.fighters.size() > 0)
     {
         cout << clan1.name << " fighters:\n";
@@ -99,5 +103,6 @@ void outputHeader(Clan& clan1, Clan& clan2)
             cout << f->getPrettyName() << ' ';
         cout << "\n" << endl;
     }
-    cout << "=====================\n" << endl;
+
+    cout << "==========================\n" << endl;
 }
