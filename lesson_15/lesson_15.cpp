@@ -81,8 +81,10 @@ int main()
                     turn++;
                     outputHeader(clan_01, clan_02);
                     cout << "TURN " << turn << endl;
-                    arena.fighters[0] = clan_01.pickRandomFighter();
-                    arena.fighters[1] = clan_02.pickRandomFighter();
+                    Fighter* f1 = clan_01.pickRandomFighter();
+                    Fighter* f2 = clan_02.pickRandomFighter();
+                    arena.fighters[0] = f1;  // created new var for easier debugging
+                    arena.fighters[1] = f2;
                     arena.announce();
                     cin.get();
                     arena.fight();
@@ -117,16 +119,16 @@ void outputHeader(Clan& clan1, Clan& clan2)
     if (clan1.fighters.size() > 0)
     {
         cout << clan1.name << " fighters:\n";
-        for (Fighter* f : clan1.fighters)
-            cout << f->getPrettyName() << ' ';
+        for (auto f : clan1.fighters)
+            cout << f.getPrettyName() << ' ';
         cout << "\n" << endl;
     }
 
     if (clan2.fighters.size() > 0)
     {
         cout << clan2.name << " fighters:\n";
-        for (Fighter* f : clan2.fighters)
-            cout << f->getPrettyName() << ' ';
+        for (auto f : clan2.fighters)
+            cout << f.getPrettyName() << ' ';
         cout << "\n" << endl;
     }
 

@@ -26,34 +26,35 @@ struct Fighter
 
 struct Clan
 {
-    vector<Fighter*> fighters;
+    vector<Fighter> fighters;
     string name;
 
-    void addFighter(Fighter &fighter)
+    void addFighter(Fighter fighter)
     {
-        fighters.push_back(&fighter);
+        fighters.push_back(fighter);
     }
 
     void removeFighterByName(const string& name)
     {
         for (auto it = fighters.begin(); it != fighters.end();)
         {
-            if ((*it)->name == name)
+            if ((it)->name == name)
                 it = fighters.erase(it); 
             else
                 ++it;
         }
     }
 
-    void removeDeadFighters()
+    void removeDeadFighters()  // question!! how to properly delete items so they're not accessable anymore
     {
         for (auto it = fighters.begin(); it != fighters.end();)
         {
-            if (!(*it)->isAlive) 
+            if (!it->isAlive) 
                 it = fighters.erase(it);
             else 
                 ++it;
         }
+        fighters.shrink_to_fit();
     }
 
     Fighter* pickRandomFighter() 
@@ -61,7 +62,8 @@ struct Clan
         static std::mt19937 rng(static_cast<unsigned int>(std::time(nullptr)));
         static std::uniform_int_distribution<std::size_t> dist(0, fighters.size() - 1);
         size_t random_index = dist(rng);
-        return fighters[random_index];
+        Fighter* random_fighter_ptr = &fighters[random_index];
+        return random_fighter_ptr;
     }
 };
 
