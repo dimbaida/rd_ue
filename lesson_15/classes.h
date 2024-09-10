@@ -54,14 +54,11 @@ struct Clan
             else 
                 ++it;
         }
-        fighters.shrink_to_fit();
     }
 
     Fighter* pickRandomFighter() 
     {
-        static std::mt19937 rng(static_cast<unsigned int>(std::time(nullptr)));
-        static std::uniform_int_distribution<std::size_t> dist(0, fighters.size() - 1);
-        size_t random_index = dist(rng);
+        size_t random_index = rand() % fighters.size();
         Fighter* random_fighter_ptr = &fighters[random_index];
         return random_fighter_ptr;
     }

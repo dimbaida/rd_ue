@@ -81,10 +81,8 @@ int main()
                     turn++;
                     outputHeader(clan_01, clan_02);
                     cout << "TURN " << turn << endl;
-                    Fighter* f1 = clan_01.pickRandomFighter();
-                    Fighter* f2 = clan_02.pickRandomFighter();
-                    arena.fighters[0] = f1;  // created new var for easier debugging
-                    arena.fighters[1] = f2;
+                    arena.fighters[0] = clan_01.pickRandomFighter();
+                    arena.fighters[1] = clan_02.pickRandomFighter();
                     arena.announce();
                     cin.get();
                     arena.fight();
