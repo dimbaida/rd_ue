@@ -6,13 +6,20 @@ class Building
 {
 public:
     Building();
+    Building(const int& _MaxAge, const int& _InitialCost);
     ~Building();
-    int Id();
+    int getId();
+    int getAge();
+    int getCost();
+    void toAge(const int& years);
+    void info();
 private:
     static int NextId;
     int ThisId = -1;
-    int MaxAge;
-    int InitialCost;
+    int Age = 0;
+    int MaxAge = 100;
+    int InitialCost = 1e6;
+    void destroy();
 };
 
 #endif
