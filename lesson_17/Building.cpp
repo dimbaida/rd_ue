@@ -1,26 +1,20 @@
-#include <cmath>
 #include "Building.h"
 
 
+int Building::NextId = 0;
+
 Building::Building()
 {
+    ThisId = NextId;
+    NextId++;
 }
 
 Building::~Building()
 {
+    NextId--;
 }
 
-int Building::GetCost()
+int Building::Id()
 {
-    float Age =  InitialCost * (1 - (float)Age / (float)MaxAge);
-    return (int)Age;
-}
-
-void Building::ToAge(const int &years)
-{
-    
-}
-
-void Building::Destroy()
-{
+    return ThisId;
 }
