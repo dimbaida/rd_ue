@@ -1,4 +1,5 @@
 #include <memory>
+#include <array>
 #include "Weapon.h"
 
 
