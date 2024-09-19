@@ -11,29 +11,34 @@ int main()
 {
     std::cout << "\033[2J\033[H";
 
-    Character hero("Aethorion");
-    std::cout << hero.GetName() << " arrived!";
+    Character hero("Siegfried");
+    std::cout << hero.GetName() << " arrived!" << std::endl;
     std::cin.get();
 
-    std::unique_ptr<Weapon> sword = std::make_unique<Sword>("Dawnbreaker", 100.0f);
-    std::unique_ptr<Weapon> bow = std::make_unique<Bow>("Sylphstrike", 50.0f, 10);
-    std::unique_ptr<Weapon> dagger = std::make_unique<Dagger>("Nightshade", 20.0f);
-    std::unique_ptr<Weapon> shittyDagger = std::make_unique<Dagger>("Rustbite", 0.2f);
+    std::unique_ptr<Weapon> swordPtr = std::make_unique<Sword>("Dawnbreaker", 100.0f);
+    std::unique_ptr<Weapon> bowPtr = std::make_unique<Bow>("Sylphstrike", 50.0f, 10);
+    std::unique_ptr<Weapon> daggerPtr = std::make_unique<Dagger>("Nightshade", 20.0f);
+    std::unique_ptr<Weapon> shittyDaggerPtr = std::make_unique<Dagger>("Rustbite", 0.2f);
 
-    hero.PickupWeapon(std::move(sword)); 
+    hero.TakeWeapon(std::move(swordPtr));
     std::cin.get();
-    hero.PickupWeapon(std::move(bow)); 
+    hero.TakeWeapon(std::move(bowPtr)); 
     std::cin.get();
-    hero.PickupWeapon(std::move(dagger)); 
+    hero.TakeWeapon(std::move(daggerPtr)); 
     std::cin.get();
-    hero.PickupWeapon(std::move(shittyDagger));  // no inventory capacity
-    std::cin.get();
-
-    std::unique_ptr<Weapon> chosenWeapon = hero.GetWeaponFromInventoryByIndex(0);
-    hero.EquipWeapon(std::move(chosenWeapon));
+    hero.TakeWeapon(std::move(shittyDaggerPtr));  // no inventory capacity
     std::cin.get();
 
-    std::cout << hero.GetName() << " holds " << hero.GetEquippedWeapon()->GetName();
+    hero.EquipFromInventoryByIndex(0);
+    std::cin.get();
+
+    std::cout << hero.GetName() << " holds " << hero.GetEquippedWeapon()->GetName() << std::endl;
+    std::cin.get();
+
+    hero.EquipFromInventoryByIndex(1);
+    std::cin.get();
+
+    std::cout << hero.GetName() << " holds " << hero.GetEquippedWeapon()->GetName() << std::endl;
     std::cin.get();
 
     return 0;
